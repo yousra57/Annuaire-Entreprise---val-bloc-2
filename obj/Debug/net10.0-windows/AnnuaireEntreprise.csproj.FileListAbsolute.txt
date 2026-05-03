@@ -189,3 +189,7 @@ D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\AdminLoginWindow.baml
 D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\AdminWindow.baml
 D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\AdminLoginWindow.g.cs
 D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\AdminWindow.g.cs
+D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\SalarieFormWindow.baml
+D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\SimpleFormWindow.baml
+D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\SalarieFormWindow.g.cs
+D:\AnnuaireEntreprise\obj\Debug\net10.0-windows\Views\SimpleFormWindow.g.cs

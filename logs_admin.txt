@@ -1,0 +1,6 @@
+[2026-05-02 22:12:11] [ADMIN] Tentative de connexion échouée
+[2026-05-02 22:15:19] [ADMIN] Connexion réussie
+[2026-05-02 22:17:49] [ADMIN] Tentative de connexion échouée
+[2026-05-02 22:17:56] [ADMIN] Connexion réussie
+[2026-05-02 22:21:25] [ADMIN] Ajout salarié : Salarié_test TEST
+[2026-05-02 22:24:00] [ADMIN] Connexion réussie

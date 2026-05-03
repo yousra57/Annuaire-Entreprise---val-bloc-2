@@ -28,7 +28,6 @@ namespace AnnuaireEntreprise
 
             DgSalaries.ItemsSource = _tousLesSalaries;
 
-            // Remplir les ComboBox
             var sites = _db.Sites.ToList();
             sites.Insert(0, new Site { Id = 0, Ville = "Tous les sites" });
             CbSite.ItemsSource = sites;
@@ -96,8 +95,30 @@ namespace AnnuaireEntreprise
 
         private void BtnExportPdf_Click(object sender, RoutedEventArgs e)
         {
-            // On implémentera le PDF ensuite
-            MessageBox.Show("Export PDF - à venir !", "Info");
+            if (DgSalaries.SelectedItem is not Salarie salarie) return;
+
+            var dialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = $"Fiche_{salarie.Nom}_{salarie.Prenom}",
+                DefaultExt = ".pdf",
+                Filter = "PDF documents (.pdf)|*.pdf"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    PdfService.GenererFicheSalarie(salarie, dialog.FileName);
+                    MessageBox.Show($"PDF généré avec succès !\n{dialog.FileName}",
+                        "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    LogService.LogError("Export PDF", ex);
+                    MessageBox.Show($"Erreur lors de la génération du PDF : {ex.Message}",
+                        "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         // Ctrl + Shift + A => ouvre le panneau admin

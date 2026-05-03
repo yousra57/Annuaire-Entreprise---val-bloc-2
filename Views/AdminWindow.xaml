@@ -1,12 +1,120 @@
 <Window x:Class="AnnuaireEntreprise.Views.AdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Panel Administrateur" Height="600" Width="900"
+        Title="Panel Administrateur" Height="600" Width="950"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBlock Text="Panel Admin - En construction" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"
-                   FontSize="20"/>
-    </Grid>
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Background="#600000" Padding="20,15">
+            <TextBlock Text="⚙️ Panel Administrateur" 
+                       Foreground="White" FontSize="22" FontWeight="Bold"/>
+        </Border>
+
+        <!-- Onglets -->
+        <TabControl Margin="10">
+
+            <!-- ===== ONGLET SALARIÉS ===== -->
+            <TabItem Header="👤 Salariés">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Boutons actions -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="➕ Ajouter" Click="BtnAjouterSalarie_Click"
+                                Background="#27AE60" Foreground="White"/>
+                        <Button Content="✏️ Modifier" Click="BtnModifierSalarie_Click"
+                                Background="#2980B9" Foreground="White"/>
+                        <Button Content="🗑️ Supprimer" Click="BtnSupprimerSalarie_Click"
+                                Background="#E74C3C" Foreground="White"/>
+                    </StackPanel>
+
+                    <!-- Liste -->
+                    <DataGrid Grid.Row="1" x:Name="DgAdminSalaries"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              SelectionMode="Single"
+                              RowBackground="White" AlternatingRowBackground="#F8F9FA">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="40"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="110"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="110"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+                            <DataGridTextColumn Header="Tél. Fixe" Binding="{Binding TelephoneFixe}" Width="110"/>
+                            <DataGridTextColumn Header="Portable" Binding="{Binding TelephonePortable}" Width="110"/>
+                            <DataGridTextColumn Header="Service" Binding="{Binding Service.Nom}" Width="100"/>
+                            <DataGridTextColumn Header="Site" Binding="{Binding Site.Ville}" Width="90"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- ===== ONGLET SITES ===== -->
+            <TabItem Header="📍 Sites">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="➕ Ajouter" Click="BtnAjouterSite_Click"
+                                Background="#27AE60" Foreground="White"/>
+                        <Button Content="✏️ Modifier" Click="BtnModifierSite_Click"
+                                Background="#2980B9" Foreground="White"/>
+                        <Button Content="🗑️ Supprimer" Click="BtnSupprimerSite_Click"
+                                Background="#E74C3C" Foreground="White"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" x:Name="DgAdminSites"
+                              AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                            <DataGridTextColumn Header="Ville" Binding="{Binding Ville}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- ===== ONGLET SERVICES ===== -->
+            <TabItem Header="🏢 Services">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="➕ Ajouter" Click="BtnAjouterService_Click"
+                                Background="#27AE60" Foreground="White"/>
+                        <Button Content="✏️ Modifier" Click="BtnModifierService_Click"
+                                Background="#2980B9" Foreground="White"/>
+                        <Button Content="🗑️ Supprimer" Click="BtnSupprimerService_Click"
+                                Background="#E74C3C" Foreground="White"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" x:Name="DgAdminServices"
+                              AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </DockPanel>
 </Window>
