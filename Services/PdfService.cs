@@ -5,15 +5,16 @@ using QuestPDF.Infrastructure;
 
 namespace AnnuaireEntreprise.Services
 { 
-    public static class PdfService // classe pour générer une fiche PDF d'un salarié, utilisée dans MainWindow pour exporter les détails du salarié choisi 
+    public static class PdfService // classe pour générer une fiche PDF d'un salarié, utilisé MainWindow 
     {
         public static void GenererFicheSalarie(Salarie salarie, string cheminFichier) //méthode pour générer la fiche PDF d'un salarié, appelée depuis MainWindow lors du clic sur le bouton d'export
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
+    // SLIDE 3 - GÉNÉRATION DE PDF AVEC QUESTPDF
             Document.Create(container =>
             {
-                container.Page(page =>
+                container.Page(page => // mise en page du PDF
                 {
                     page.Size(PageSizes.A4);
                     page.Margin(2, Unit.Centimetre);
@@ -34,7 +35,7 @@ namespace AnnuaireEntreprise.Services
                     // Contenu
                     page.Content().Padding(20).Column(col =>
                     {
-                        // Nom complet
+                        // Nom complet du salarié avec service et site, dans une boîte grisée
                         col.Item().Background("#ECF0F1").Padding(15).Row(row =>
                         {
                             row.RelativeItem().Column(inner =>
@@ -48,7 +49,7 @@ namespace AnnuaireEntreprise.Services
 
                         col.Item().Height(20);
 
-                        // Informations de contact
+                        // Informations de contact dans une table avec deux colonnes : label et valeur
                         col.Item().Text("Informations de contact")
                             .FontSize(15).Bold().FontColor("#600000");
 
@@ -62,7 +63,7 @@ namespace AnnuaireEntreprise.Services
                                 columns.RelativeColumn();
                             });
 
-                            // Ligne helper
+                            // Ligne helper = pour éviter de répéter le même code pour chaque ligne d'information
                             void AjouterLigne(string label, string valeur)
                             {
                                 table.Cell().Background("#F8F9FA").Padding(8)
@@ -85,7 +86,7 @@ namespace AnnuaireEntreprise.Services
                             .FontSize(10).FontColor("#95A5A6").Italic();
                     });
 
-                    // Footer
+                    // Footer = bas de page avec un texte centré
                     page.Footer().AlignCenter().Text(text =>
                     {
                         text.Span("Annuaire Entreprise — Document confidentiel")

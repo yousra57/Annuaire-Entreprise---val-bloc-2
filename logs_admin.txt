@@ -4,3 +4,10 @@
 [2026-05-02 22:17:56] [ADMIN] Connexion réussie
 [2026-05-02 22:21:25] [ADMIN] Ajout salarié : Salarié_test TEST
 [2026-05-02 22:24:00] [ADMIN] Connexion réussie
+[2026-05-05 11:20:06] [ADMIN] Connexion réussie
+[2026-05-05 11:21:39] [ADMIN] Ajout salarié : Yousra EL MOUBARIK
+[2026-05-05 12:03:49] [ADMIN] Connexion réussie
+[2026-05-05 12:04:58] [ADMIN] Ajout salarié : Laurent PAVARD
+[2026-05-05 12:05:13] [ADMIN] Suppression salarié ID=13
+[2026-05-05 12:05:34] [ADMIN] Ajout site : Strasbourg
+[2026-05-05 12:05:52] [ADMIN] Suppression site ID=3

@@ -8,7 +8,7 @@ namespace AnnuaireEntreprise.Data
         {
             using var db = new AppDbContext();
             db.Database.EnsureCreated();
-            db.Database.ExecuteSqlRaw("PRAGMA journal_mode=WAL;");
+            db.Database.ExecuteSqlRaw("PRAGMA journal_mode=WAL;"); // C'EST CETTE LIGNE QUI PERMET LES 2 INSTANCES 
         }
     }
 }

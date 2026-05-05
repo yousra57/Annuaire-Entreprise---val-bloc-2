@@ -1,6 +1,6 @@
 namespace AnnuaireEntreprise.Models
 {
-    public class Service
+    public class Service // classe service
     {
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;

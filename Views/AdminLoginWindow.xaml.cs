@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace AnnuaireEntreprise.Views
 {
-    public partial class AdminLoginWindow : Window
-    {
-        private const string MotDePasseAdmin = "admin123";
+    public partial class AdminLoginWindow : Window // HERITAGE de la classe Window
+    { //SLIDE 6 (B) - Fenêtre de connexion admin
+        private const string MotDePasseAdmin = "admin123"; // mdp choisi pour l'accès admin
 
         public AdminLoginWindow()
         {

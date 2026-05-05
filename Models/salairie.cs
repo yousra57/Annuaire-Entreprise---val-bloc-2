@@ -1,6 +1,6 @@
 namespace AnnuaireEntreprise.Models
 {
-    public class Salarie
+    public class Salarie //classe salarié
     {
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;
@@ -11,7 +11,7 @@ namespace AnnuaireEntreprise.Models
         public int ServiceId { get; set; }
         public int SiteId { get; set; }
 
-        public Service? Service { get; set; }
+        public Service? Service { get; set; } // un salarié à 1 service et 1 site
         public Site? Site { get; set; }
     }
 }

@@ -8,22 +8,22 @@ using System.Windows.Input;
 
 namespace AnnuaireEntreprise
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window // HERITAGE de la classe Window
     {
         private AppDbContext _db = new AppDbContext();
         private List<Salarie> _tousLesSalaries = new();
 
-        public MainWindow()
+        public MainWindow() // constructeur de la classe MainWindow, appelé lors de l'instanciation de la fenêtre
         {
             InitializeComponent();
             ChargerDonnees();
         }
 
-        private void ChargerDonnees()
+        private void ChargerDonnees() // méthode pour charger les données depuis la bdd 
         {
             _tousLesSalaries = _db.Salaries
-                .Include(s => s.Site)
-                .Include(s => s.Service)
+                .Include(s => s.Site) // Include pour charger les données liées du site et du service en une seule requête
+                .Include(s => s.Service) 
                 .ToList();
 
             DgSalaries.ItemsSource = _tousLesSalaries;
@@ -48,15 +48,15 @@ namespace AnnuaireEntreprise
             var serviceSelectionne = CbService.SelectedItem as Service;
 
             var resultats = _tousLesSalaries.AsEnumerable();
-
+        // LINQ - filtrer par nom
             if (!string.IsNullOrWhiteSpace(recherche))
                 resultats = resultats.Where(s =>
                     s.Nom.ToLower().Contains(recherche) ||
                     s.Prenom.ToLower().Contains(recherche));
-
+        // LINQ - filtrer par site 
             if (siteSelectionne != null && siteSelectionne.Id != 0)
                 resultats = resultats.Where(s => s.SiteId == siteSelectionne.Id);
-
+        // LINQ - filtrer par service
             if (serviceSelectionne != null && serviceSelectionne.Id != 0)
                 resultats = resultats.Where(s => s.ServiceId == serviceSelectionne.Id);
 
@@ -120,15 +120,15 @@ namespace AnnuaireEntreprise
                 }
             }
         }
-
+    //SLIDE 6 (A) - Panneau admin caché avec raccourci clavier
         // Ctrl + Shift + A => ouvre le panneau admin
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.A &&
-                Keyboard.IsKeyDown(Key.LeftCtrl) &&
-                Keyboard.IsKeyDown(Key.LeftShift))
+            if (e.Key == Key.A && //écoute du raccourci clavier Ctrl + Shift + A pour ouvrir le panneau admin
+                Keyboard.IsKeyDown(Key.LeftCtrl) && // 3 touches pressées en même temps 
+                Keyboard.IsKeyDown(Key.LeftShift)) 
             {
-                var adminWindow = new Views.AdminLoginWindow();
+                var adminWindow = new Views.AdminLoginWindow(); 
                 adminWindow.ShowDialog();
             }
         }

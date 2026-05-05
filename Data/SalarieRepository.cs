@@ -5,7 +5,7 @@ using Microsoft.Data.Sqlite;
 namespace AnnuaireEntreprise.Data
 {
     /// <summary>
-    /// Repository combinant requêtes SQL brutes et ORM (Entity Framework) pour répondre à la grille BLOC 2
+    /// PATTERN REPOSITORY combinant requêtes SQL brutes et ORM (Entity Framework) pour répondre à la grille BLOC 2
     /// </summary>
     public class SalarieRepository
     {
@@ -14,7 +14,7 @@ namespace AnnuaireEntreprise.Data
         // REQUÊTES SQL BRUTES
 
         /// <summary>
-        /// Recherche des salariés par nom (saisie partielle) — SQL brut
+        /// Recherche des salariés par nom (saisie partielle) — SQL brut, purement écrit à la main 
         /// </summary>
         public List<Salarie> RechercherParNomSQL(string nom)
         {
@@ -138,15 +138,15 @@ namespace AnnuaireEntreprise.Data
         /// <summary>
         /// Recherche des salariés par nom — ORM
         /// </summary>
-        public List<Salarie> RechercherParNomORM(string nom)
+        public List<Salarie> RechercherParNomORM(string nom) // LINQ
         {
             using var db = new AppDbContext();
             return db.Salaries
-                .Include(s => s.Site)
-                .Include(s => s.Service)
-                .Where(s => s.Nom.Contains(nom) || s.Prenom.Contains(nom))
-                .OrderBy(s => s.Nom)
-                .ToList();
+                .Include(s => s.Site) // charge les données du site lié
+                .Include(s => s.Service) // charge les données du service lié
+                .Where(s => s.Nom.Contains(nom) || s.Prenom.Contains(nom)) // filtre par nom
+                .OrderBy(s => s.Nom)  // trie par ordre alphabétique
+                .ToList(); // exécute et retourne une liste
         }
 
         /// <summary>
